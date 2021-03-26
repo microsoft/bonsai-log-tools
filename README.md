@@ -1,16 +1,4 @@
-# Contributing
-
-This project welcomes contributions and suggestions.  Most contributions require you to agree to a
-Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
-the rights to use your contribution. For details, visit https://cla.opensource.microsoft.com.
-
-When you submit a pull request, a CLA bot will automatically determine whether you need to provide
-a CLA and decorate the PR appropriately (e.g., status check, comment). Simply follow the instructions
-provided by the bot. You will only need to do this once across all repos using our CLA.
-
-This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
-For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
-contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+# Querying and Analyzing Logs from Project Bonsai
 
 ## Description
 
@@ -48,6 +36,7 @@ This [documentation](https://docs.microsoft.com/en-us/bonsai/cli/brain/version/s
     - start jupyter: ```jupyter notebook```
 
 ## Logging training (with managed sims)
+
 1. start brain training `bonsai brain version start-training --name <BRAIN_NAME>`
 2. When you're ready to [start logging](https://docs.microsoft.com/en-us/bonsai/cli/brain/version/start-logging):
 `bonsai brain version start-logging -n <brain-name> --version <version-number> -m`
@@ -55,6 +44,7 @@ This [documentation](https://docs.microsoft.com/en-us/bonsai/cli/brain/version/s
 3. Refer to steps 4-6 in the section above
 
 ## Logging custom assessements
+
 1. Start a custom assessment (with a managed or unmanaged sim) as you usually would, using either the CLI or the web UI
 2. Wait for your assessment to start running (in the UI, you can tell that your assessment is running when you click on the assessment and no longer see the "waiting for simulators" text)
 3. Navigate to the CLI to [start logging](https://docs.microsoft.com/en-us/bonsai/cli/brain/version/start-logging)
@@ -62,3 +52,18 @@ This [documentation](https://docs.microsoft.com/en-us/bonsai/cli/brain/version/s
     2. For all unmanaged simulators that you want to log from use the command `bonsai brain version start-logging -n <BRAIN_NAME> --session-id <SESSION_ID>`
 4. Refers to steps 4-5 in the section one (logging training with unmanaged sims) 
 5. Note that one simulator will always be logged from your custom assessments by default. Use the instructions above if you want to log from more than one simulator for your custom assessment. Alternatively, run your entire assessment on one simulator instance (managed or managed) so that all the data from the assessment is logged. Very soon, all data for a custom assessent will be logged by default, so this step will not be needed at all.
+
+## Contributing
+
+This project welcomes contributions and suggestions.  Most contributions require you to agree to a
+Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
+the rights to use your contribution. For details, visit https://cla.opensource.microsoft.com.
+
+When you submit a pull request, a CLA bot will automatically determine whether you need to provide
+a CLA and decorate the PR appropriately (e.g., status check, comment). Simply follow the instructions
+provided by the bot. You will only need to do this once across all repos using our CLA.
+
+This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
+For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
+contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+
