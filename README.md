@@ -2,22 +2,25 @@
 
 ## Description
 
-This notebook provides you with a template to import and visualize logs for specific brain versions. The data is imported from an Azure Log Analytics Workspace (LAW) and into Jupyter.
+Welcome! The notebooks in this repository aim to provide templates for importing and visualizing logs for brains trained or assessed using the [Bonsai platform](https://docs.microsoft.com/en-us/bonsai/). The data is imported from an Azure Log Analytics Workspace (LAW) and into a Jupyter notebook.
 
-Training and assessment logs are saved in an automatically provisioned [Azure Log Analytics workspace](https://docs.microsoft.com/en-us/azure/azure-monitor/log-query/log-analytics-tutorial) (and can be queried via [KQL](https://docs.microsoft.com/en-us/azure/data-explorer/kusto/query/tutorial?pivots=azuremonitor) language). By default, one simulator is logged for each brain training and assessment session. To collect logs from more simulators during training, use the Bonsai CLI and refer to the instructions below.
+Training and assessment logs are saved in an automatically provisioned [Azure Log Analytics workspace](https://docs.microsoft.com/en-us/azure/azure-monitor/log-query/log-analytics-tutorial) (and can be queried via [KQL](https://docs.microsoft.com/en-us/azure/data-explorer/kusto/query/tutorial?pivots=azuremonitor) language). By default, four simulators are logged automatically during assessment. To collect logs from more simulators during training, use the Bonsai CLI and refer to the instructions below.
 
 This [documentation](https://docs.microsoft.com/en-us/bonsai/cli/brain/version/start-logging) offers more details on enabling logging via the CLI.
 
 ## Prerequisites
 
-1. Install requirements: `pip install -r requirements.txt`
+1. Install the package requirements: `pip install -r requirements.txt`
+2. Train a brain and start logging using instructions below
  
+You can generate logs from brains that utilize managed or unmanaged simulators. We outline both approaches below:
+
 ## Logging training (with unmanaged sims)
 
 1. Start an unmanaged sim and brain training as you normally would: 
-    1. register a sim by launching your sim. For example `python main.py` (or through our partner sims AnyLogic or Simulink)
-    1. start brain training `bonsai brain version start-training --name <BRAIN_NAME>`
-    1. connect your registered sim to a brain `bonsai simulator connect --simulator-name <SIM_NAME> --brain-name <BRAIN_NAME> --version <VERSION_#> --action Train --concept-name <CONCEPT_NAME>`
+    1. Register a sim by launching your sim. For example `python main.py` (or through our partner sims AnyLogic or Simulink)
+    1. Start brain training `bonsai brain version start-training --name <BRAIN_NAME>`
+    1. Connect your registered sim to a brain `bonsai simulator connect --simulator-name <SIM_NAME> --brain-name <BRAIN_NAME> --version <VERSION_#> --action Train --concept-name <CONCEPT_NAME>`
 2. Find the session-id of un-managed sim using Bonsai CLI: `bonsai simulator unmanaged list`
 3. When you're ready to [start logging](https://docs.microsoft.com/en-us/bonsai/cli/brain/version/start-logging):
 `bonsai brain version start-logging -n <BRAIN_NAME> --session-id <SESSION_ID>`
@@ -32,7 +35,7 @@ This [documentation](https://docs.microsoft.com/en-us/bonsai/cli/brain/version/s
     | where SessionId_s == <SESSION_ID>
     | take 10
     ```
-6. Open the jupyter notebook `Bonsai_log_analysis.ipynb` to perform queries, or query using the log analytics workspace environment.
+6. Open the jupyter notebook `01-retrieving-logs.ipynb` to perform sample queries, or query using the log analytics workspace environment.
     - start jupyter: ```jupyter notebook```
 
 ## Logging training (with managed sims)
@@ -40,18 +43,14 @@ This [documentation](https://docs.microsoft.com/en-us/bonsai/cli/brain/version/s
 1. start brain training `bonsai brain version start-training --name <BRAIN_NAME>`
 2. When you're ready to [start logging](https://docs.microsoft.com/en-us/bonsai/cli/brain/version/start-logging):
 `bonsai brain version start-logging -n <brain-name> --version <version-number> -m`
-    1.Note: A Log Analytics workspace will be provisioned automatically on Azure if it does not already exist
-3. Refer to steps 4-6 in the section above
+    1. Note: A Log Analytics workspace will be provisioned automatically on Azure if it does not already exist
+3. Refer to the noteboook `02-custom-assessment-logs.ipynb` to view some sample queries, or perform queries using the log analytics workspace environment.
 
 ## Logging custom assessements
 
 1. Start a custom assessment (with a managed or unmanaged sim) as you usually would, using either the CLI or the web UI
 2. Wait for your assessment to start running (in the UI, you can tell that your assessment is running when you click on the assessment and no longer see the "waiting for simulators" text)
-3. Navigate to the CLI to [start logging](https://docs.microsoft.com/en-us/bonsai/cli/brain/version/start-logging)
-    1. For managed simulators use the command `bonsai brain version start-logging -n <brain-name> --version <version-number> -m`
-    2. For all unmanaged simulators that you want to log from use the command `bonsai brain version start-logging -n <BRAIN_NAME> --session-id <SESSION_ID>`
-4. Refers to steps 4-5 in the section one (logging training with unmanaged sims) 
-5. Note that one simulator will always be logged from your custom assessments by default. Use the instructions above if you want to log from more than one simulator for your custom assessment. Alternatively, run your entire assessment on one simulator instance (managed or managed) so that all the data from the assessment is logged. Very soon, all data for a custom assessent will be logged by default, so this step will not be needed at all.
+3. Use the notebook  title
 
 ## Contributing
 
