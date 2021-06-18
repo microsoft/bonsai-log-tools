@@ -38,6 +38,9 @@ You can generate logs from brains that utilize managed or unmanaged simulators. 
 6. Open the jupyter notebook `01-retrieving-logs.ipynb` to perform sample queries, or query using the log analytics workspace environment.
     - start jupyter: ```jupyter notebook```
 
+> **WARNING**: Be careful, or else!
+
+
 ## Logging training (with managed sims)
 
 1. start brain training `bonsai brain version start-training --name <BRAIN_NAME>`
