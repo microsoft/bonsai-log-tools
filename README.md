@@ -38,8 +38,7 @@ You can generate logs from brains that utilize managed or unmanaged simulators. 
 6. Open the jupyter notebook `01-retrieving-logs.ipynb` to perform sample queries, or query using the log analytics workspace environment.
     - start jupyter: ```jupyter notebook```
 
-> **WARNING**: Be careful, or else!
-
+> **WARNING**: KQL queries are case-sensitive and the data stored in your analytics workspace is saved as lowercase strings. Brain name and assessment name must be set as lowercase or the query options noted below will fail to find any data.
 
 ## Logging training (with managed sims)
 
