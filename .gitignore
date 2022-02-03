@@ -3,3 +3,6 @@
 
 # Visual Studio cache/options directory
 .vs/
+
+# Kqlmagic temp files
+/kqlmagic/temp_files
